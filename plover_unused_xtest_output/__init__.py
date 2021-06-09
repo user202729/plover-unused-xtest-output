@@ -111,7 +111,12 @@ class KeyboardEmulation(XEventLoop, KeyboardEmulationBase):
         self._custom_keycodes.clear()
         for keycode, keysyms in self._keymap.items():
             if self.PLOVER_MAPPING_KEYSYM in keysyms or all(x==X.NoSymbol for x in keysyms):
-                self._custom_keycodes.append(keycode)
+                if keycode!=8:
+                    # TODO temporary workaround
+                    # this is usually free and safe to use, but mapping this will make
+                    # xdotool and similar programs send it instead of the "correct" keycode,
+                    # which will make capturing harder.
+                    self._custom_keycodes.append(keycode)
         print(f"custom =  {self._custom_keycodes}")
 
     @with_display_lock

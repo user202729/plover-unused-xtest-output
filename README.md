@@ -2,6 +2,11 @@
 
 Output plugin for Plover, send key presses through xtest.
 
+**Note**: the current (as of the time of writing) version of Plover does not support
+output plugins, you can enable it by enabling the corresponding extension plugin.
+The internal API are used, it might breaking at any time.
+
+
 Only use unused key codes in xmodmap to avoid conflict.
 
 Note that this still use the actual modifier keys.
